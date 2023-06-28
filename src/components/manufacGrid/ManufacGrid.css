@@ -1,0 +1,56 @@
+.manufac-grid {
+  min-height: 275px;
+  min-width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.manufac-grid-header-container {
+  flex-basis: 20%;
+}
+
+.manufac-grid-dynamic-container {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.manufac-grid-dynamic-content {
+  flex-grow: 1;
+}
+
+.manufac-grid-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.manufac-grid-col > div {
+  min-height: 25%;
+  border-top: 1px solid hsl(0, 0%, 43%);
+  border-left: 1px solid hsl(0, 0%, 43%);
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.manufac-grid-col > div:last-child {
+  border-bottom: 1px solid hsl(0, 0%, 43%);
+}
+
+.manufac-grid-col:last-child > div {
+  border-right: 1px solid hsl(0, 0%, 43%);
+}
+
+.manufac-grid-col > div > * {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
+  color: #373535;
+  padding: 0;
+  margin: 0;
+}
+
+.manufac-grid-col > .manufac-grid-header > * {
+  font-weight: 600;
+}
