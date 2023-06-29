@@ -4,6 +4,10 @@ import "./ManufacGrid.css";
 
 const { FLAVANOIDS_MODE } = ManufacGridModes;
 
+/**
+ * A component to render grid of alcohol classes and related Mean, Median and Mode.
+ * Follow props interface for the usage of props.
+ */
 export const ManufacGrid = ({
   alcoholsByClass,
   mode,

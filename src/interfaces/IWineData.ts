@@ -1,3 +1,7 @@
+/**
+ * Represents the transformed (usable) wine data.
+ * The raw response contains unconventional property names.
+ */
 export interface IWineData {
   alcohol: number;
   malicAcid: number;
