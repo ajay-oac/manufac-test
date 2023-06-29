@@ -1,5 +1,8 @@
 import { IAlcoholByClass, IWineData, IWineDataRaw } from "../interfaces";
 
+/**
+ * A service class for hosting different helper functions.
+ */
 export class ManufacHelperService {
   private static roundOffTo3(num: number): number {
     return +num.toFixed(3);
@@ -81,6 +84,9 @@ export class ManufacHelperService {
     return this.roundOffTo3(highestGamma as number) || 0;
   }
 
+  /**
+   * Transforms raw Wine Data Set (the raw/original result of API) into Wine Data Set (the usable result).
+   */
   public static getWineDataSetFromRawData(
     wineDataSetRaw: Array<IWineDataRaw>
   ): Array<IWineData> {
@@ -101,22 +107,33 @@ export class ManufacHelperService {
     }));
   }
 
+  /**
+   * Categorizes Wine Data Set by Alcohol class.
+   * Each item in the collection is a unique alcohol (uniquely identified by class).
+   * Each alcohol has it's respective Mean, Median and Mode for Flavanoids and Gamma.
+   */
   public static getAlcoholByClassFromWineDataSet(
     wineDataSet: Array<IWineData>
   ): Array<IAlcoholByClass> {
+    // Get all unique alcohol classes.
     const alcoholClasses: Set<number> = new Set();
     wineDataSet.forEach(
       ({ alcohol }) =>
         !alcoholClasses.has(alcohol) && alcoholClasses.add(alcohol)
     );
 
+    // Categorize wine data by alcohol class.
     const alcoholsByClasses: Array<IAlcoholByClass> = [];
     for (let alcoholClass of alcoholClasses.values()) {
       const filteredWineDataSet: Array<IWineData> = wineDataSet.filter(
         ({ alcohol }) => alcohol === alcoholClass
       );
+
+      // Get Gamma values for every wine data.
       const gammaValues: Array<number> =
         this.getGammaValues(filteredWineDataSet);
+
+      // Get Mean, Median and Mode for each alcohol class.
       alcoholsByClasses.push({
         class: alcoholClass,
         flavanoidsMean: this.getFlavanoidsMean(filteredWineDataSet),

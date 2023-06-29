@@ -2,3 +2,8 @@
   margin: 50px 100px;
   font-family: "Roboto", sans-serif;
 }
+
+.manufac-api-error {
+  color: tomato;
+  font-size: 2rem;
+}

@@ -1,3 +1,6 @@
+/**
+ * Represents the structure of wine data in the raw/original response of the API to get Wine Data Set.
+ */
 export interface IWineDataRaw {
   Alcohol: number;
   "Malic Acid": number;

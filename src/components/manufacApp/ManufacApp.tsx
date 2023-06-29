@@ -10,19 +10,30 @@ import "./ManufacApp.css";
 
 const { FLAVANOIDS_MODE, GAMMA_MODE } = ManufacGridModes;
 
+/**
+ * The container for rendering grid.
+ * Fetches wine data and manages the state for grid comoponent.
+ * Renders the grid component for Flavanoids and Gamma.
+ */
 export const ManufacApp = (): React.ReactElement => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [hasErrorOccurred, setHasErrorOccurred] = useState<boolean>(false);
   const [alcoholsByClass, setAlcoholsByClass] = useState<
     Array<IAlcoholByClass>
   >([]);
 
+  // Fetch the wine data on mount and toggle loader and eror based on result.
   useEffect(() => {
     (async () => {
-      const wineDataSet: Array<IWineData> =
-        await ManufacWineDataSetService.getWineDataSet();
-      setAlcoholsByClass(
-        ManufacHelperService.getAlcoholByClassFromWineDataSet(wineDataSet)
-      );
+      try {
+        const wineDataSet: Array<IWineData> =
+          await ManufacWineDataSetService.getWineDataSet();
+        setAlcoholsByClass(
+          ManufacHelperService.getAlcoholByClassFromWineDataSet(wineDataSet)
+        );
+      } catch (err) {
+        setHasErrorOccurred(true);
+      }
       setIsLoading(false);
     })();
   }, []);
@@ -41,7 +52,12 @@ export const ManufacApp = (): React.ReactElement => {
           <ManufacGrid alcoholsByClass={alcoholsByClass} mode={GAMMA_MODE} />
         </>
       )}
-      {!isLoading && !alcoholsByClass.length && <p>Nothing to show!</p>}
+      {!isLoading && !hasErrorOccurred && !alcoholsByClass.length && (
+        <p>Nothing to show!</p>
+      )}
+      {hasErrorOccurred && (
+        <p className="manufac-api-error">Something went wrong!</p>
+      )}
     </div>
   );
 };
