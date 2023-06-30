@@ -6,8 +6,8 @@ export interface IAlcoholByClass {
   class: number;
   flavanoidsMean: number;
   flavanoidsMedian: number;
-  flavanoidsMode: number;
+  flavanoidsModes: Array<number>;
   gammaMean: number;
   gammaMedian: number;
-  gammaMode: number;
+  gammaModes: Array<number>;
 }

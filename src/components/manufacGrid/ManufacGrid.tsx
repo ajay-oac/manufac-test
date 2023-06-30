@@ -12,6 +12,15 @@ export const ManufacGrid = ({
   alcoholsByClass,
   mode,
 }: IManufacGridProps): React.ReactElement => {
+  const showModes = (modeVals: Array<number>): Array<JSX.Element> | string =>
+    modeVals.length
+      ? modeVals.map((modeVal, index) => (
+          <span key={modeVal}>{`${modeVal}${
+            index !== modeVals.length - 1 ? ", " : ""
+          }`}</span>
+        ))
+      : "N/A";
+
   return (
     <div className="manufac-grid">
       <div className="manufac-grid-header-container manufac-grid-col">
@@ -56,8 +65,8 @@ export const ManufacGrid = ({
             <div>
               <p>
                 {mode === FLAVANOIDS_MODE
-                  ? alcohol.flavanoidsMode
-                  : alcohol.gammaMode}
+                  ? showModes(alcohol.flavanoidsModes)
+                  : showModes(alcohol.gammaModes)}
               </p>
             </div>
           </div>
