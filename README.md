@@ -8,7 +8,7 @@ Shows the grid with Mean, Median and Mode of Flavanoids and Gamma from the given
 
 ## App Screenshots
 
-![App Screenshot](https://user-images.githubusercontent.com/85103513/249677882-3c7f024c-3091-458d-a114-1e3ce6fb1637.jpg)
+![App Screenshot](https://user-images.githubusercontent.com/85103513/250062672-87d90e9a-0d17-4d30-b605-300b5e3ef057.jpg)
 
 
 ## Buid and Run Locally
