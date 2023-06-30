@@ -3,7 +3,7 @@ import { ManufacGridModes } from "../../constants";
 import { IWineData, IAlcoholByClass } from "../../interfaces";
 import {
   ManufacWineDataSetService,
-  ManufacHelperService,
+  ManufacDataTransformerService,
 } from "../../services";
 import { ManufacGrid } from "../manufacGrid";
 import "./ManufacApp.css";
@@ -29,7 +29,9 @@ export const ManufacApp = (): React.ReactElement => {
         const wineDataSet: Array<IWineData> =
           await ManufacWineDataSetService.getWineDataSet();
         setAlcoholsByClass(
-          ManufacHelperService.getAlcoholByClassFromWineDataSet(wineDataSet)
+          ManufacDataTransformerService.getAlcoholByClassFromWineDataSet(
+            wineDataSet
+          )
         );
       } catch (err) {
         setHasErrorOccurred(true);

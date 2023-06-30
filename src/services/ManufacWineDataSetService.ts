@@ -1,5 +1,5 @@
 import { IWineData, IWineDataRaw } from "../interfaces";
-import { ManufacHelperService } from "./ManufacHelperService";
+import { ManufacDataTransformerService } from "./ManufacDataTransformerService";
 
 /**
  * This represents the response of mock GET API.
@@ -29,6 +29,8 @@ export class ManufacWineDataSetService {
   public static async getWineDataSet(): Promise<Array<IWineData>> {
     const wineDataSetRaw: Array<IWineDataRaw> =
       await new ManufacWineDataSetService().mockFetch();
-    return ManufacHelperService.getWineDataSetFromRawData(wineDataSetRaw);
+    return ManufacDataTransformerService.getWineDataSetFromRawData(
+      wineDataSetRaw
+    );
   }
 }
